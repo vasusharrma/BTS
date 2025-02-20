@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/one.ts","./src/two.ts"],"version":"5.7.3"}
+{"root":["./src/01covid_checkup.ts","./src/02covid_checkup.ts","./src/fileServer.ts","./src/hospital.ts","./src/index.ts","./src/one.ts","./src/two.ts","./src/types/types.ts"],"version":"5.7.3"}
