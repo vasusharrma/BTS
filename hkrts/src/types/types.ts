@@ -8,3 +8,7 @@ export interface User {
 
 }
 
+export type covid_headers = {
+  username: string | string[] | undefined
+  password: string | string[] | undefined
+}
