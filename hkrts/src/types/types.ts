@@ -12,3 +12,9 @@ export type covid_headers = {
   username: string | string[] | undefined
   password: string | string[] | undefined
 }
+
+export interface zodfuncitontyep {
+  name: string,
+  email: string,
+  arr: number[]
+}
