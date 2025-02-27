@@ -18,3 +18,9 @@ export interface zodfuncitontyep {
   email: string,
   arr: number[]
 }
+
+export interface allUsers {
+  username: string,
+  password: string,
+  name: string
+}[]
