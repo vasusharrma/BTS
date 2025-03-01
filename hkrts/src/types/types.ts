@@ -23,4 +23,4 @@ export interface allUsers {
   username: string,
   password: string,
   name: string
-}[]
+}
