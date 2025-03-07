@@ -18,6 +18,19 @@ function ticketCheck(req: Request, res: Response, next: NextFunction): void {
 
 }
 
+function isOldEnough(req: Request, res: Response, next: NextFunction): void {
+  const age = Number(req.query.age);
+  if (age > 14) {
+    next();
+  }
+  else {
+    res.status(411).json({
+      msg: "sorry you are not age yet"
+    })
+  }
+
+}
+
 
 app.get('/ride1', (req: Request, res: Response): void => {
 
@@ -25,7 +38,7 @@ app.get('/ride1', (req: Request, res: Response): void => {
 
 })
 
-app.get('/ride2', (req: Request, res: Response): void => {
+app.get('/ride2', isOldEnough, (req: Request, res: Response): void => {
 
   res.json({ msg: "succesfully riden ride 2" });
 
