@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --ext ts --exec ts-node src/jwtauth.ts"
+    "dev": "nodemon --ext ts --exec ts-node src/lbbOne.ts"
   },
   "keywords": [],
   "author": "",
