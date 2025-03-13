@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const DATABASE_URI = process.env.DATABASE_URI as string;
+const DATABASE_URI = "mongodb+srv://Ram:7spze2dy9n@vasusharrmaa.4itmd.mongodb.net/todoData"
 
 const connectDb = async (): Promise<void> => {
 

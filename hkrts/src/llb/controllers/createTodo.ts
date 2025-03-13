@@ -36,3 +36,5 @@ async function createTodo(req: Request, res: Response): Promise<void> {
   }
 
 }
+
+export { createTodo }
