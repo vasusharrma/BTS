@@ -1,6 +1,14 @@
-import mongoose, { Document, Schema } from 'mongoose'
-import { TDSchema } from '../types'
 
+import mongoose, { Schema, Document } from 'mongoose'
+
+
+interface TDSchema extends Document {
+  name: string,
+  email: string,
+  age: number,
+  createdAt: Date,
+  updatedAt: Date
+}
 
 
 const TDUser = new Schema<TDSchema>({
@@ -11,23 +19,17 @@ const TDUser = new Schema<TDSchema>({
   },
   email: {
     type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
     required: true
   },
   age: {
-    type: Number
+    type: Number,
+    required: true
   },
-
   createdAt: {
     type: Date,
     required: true,
     default: Date.now()
   },
-
   updatedAt: {
     type: Date,
     required: true,
@@ -35,4 +37,4 @@ const TDUser = new Schema<TDSchema>({
   }
 });
 
-export default mongoose.model<TDSchema>("User", TDUser);
+export default mongoose.model<TDSchema>("User", TDUser);  

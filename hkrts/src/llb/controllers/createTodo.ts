@@ -1,45 +1,38 @@
-import Users from '../models/Todo'
 import { Request, Response } from 'express'
+import TDUser from '../models/Todo'
 import z from 'zod'
 
 
-const ztodoSchema = z.object(
-  {
-    name: z.string(),
-    email: z.string().email(),
-    password: z.string(),
-    age: z.number(),
-    createdAt: z.union([z.string(), z.date()]).transform((val) => new Date(val)),
-    updatedAt: z.union([z.string(), z.date()]).transform((val) => new Date(val)),
-  }
-)
 
-const createTodo = async (req: Request, res: Response): Promise<void> => {
+const reqresSchema = z.object({
+  name: z.string(),
+  email: z.string(),
+  password: z.string(),
+  age: z.number(),
+  createdAt: z.union([z.string(), z.date()]).transform((val) => new Date(val)),
+  updatedAt: z.union([z.string(), z.date()]).transform((val) => new Date(val)),
+})
 
-  const reqres = ztodoSchema.safeParse(req.body);
+async function createTodo(req: Request, res: Response): Promise<void> {
 
-  if (!reqres.success) {
-    res.status(400).json({ msg: reqres.error.format() })
+  const reqData = reqresSchema.safeParse(req.body);
+
+  if (!reqData.success) {
+    res.status(401).json({ err: reqData.error.format() });
     return;
   }
 
   try {
 
-    const { name, email, password, age, createdAt, updatedAt } = reqres.data;
+    const { name, email, password, age, createdAt, updatedAt } = reqData.data;
 
-    const newTodo = new Users({ name, email, password, age, createdAt, updatedAt });
-    await newTodo.save();
-    res.status(201).json({ message: "Todo created successfully", data: newTodo });
+    const newUser = new TDUser({ name, email, password, age, createdAt, updatedAt });
+    await newUser.save();
+    res.status(200).json({ msg: "User saved succesfully" });
+
   }
-  catch (error) {
-
-    res.status(500).json({ message: "Server Error", error: (error as Error).message });
+  catch (err) {
+    res.status(500).json({ error: err });
   }
 
 }
-
-
-
-
-
-export { createTodo }
